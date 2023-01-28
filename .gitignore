@@ -1,4 +1,8 @@
-HELP.md
 .gradle
 .idea
 build
+
+HELP.md
+
+# Private telegram configuration file
+telegram.properties
