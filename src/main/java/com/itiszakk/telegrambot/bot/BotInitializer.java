@@ -1,4 +1,4 @@
-package com.itiszakk.telegrambot.service;
+package com.itiszakk.telegrambot.bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -11,16 +11,16 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @Component
 public class BotInitializer {
 
-    private final Bot bot;
+    private final BotService botService;
 
     @Autowired
-    public BotInitializer(Bot bot) {
-        this.bot = bot;
+    public BotInitializer(BotService botService) {
+        this.botService = botService;
     }
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() throws TelegramApiException {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-        botsApi.registerBot(bot);
+        botsApi.registerBot(botService);
     }
 }
